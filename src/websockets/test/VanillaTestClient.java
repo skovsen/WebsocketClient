@@ -16,7 +16,10 @@ public class VanillaTestClient implements WebsocketCallback{
 	
 	public VanillaTestClient(){
 		now = System.currentTimeMillis();
+		
 		wsc= new WebsocketClientStomp(this, "ws://localhost:8081/orion");
+		//running instance of Websocket middleware:
+		//wsc= new WebsocketClientStomp(this, "ws://ec2-52-40-19-99.us-west-2.compute.amazonaws.com:8081/orion");
 		startLoop();
 	}
 	
@@ -30,7 +33,8 @@ public class VanillaTestClient implements WebsocketCallback{
 					  String[] cond = new String[1];
 					  cond[0] = "pressure";
 					  //reference: https://fiware-orion.readthedocs.io/en/develop/user/walkthrough_apiv2/index.html#subscriptions
-					  OrionSubscription subscription = new OrionSubscription(cond, attr, "P1D", "Room666", false, "Room",null);
+					  String entityId = "urn:oc:entity:experimenters:cf2c1723-3369-4123-8b32-49abe71c0e57:5846db253be86fb0409329e8:11";
+					  OrionSubscription subscription = new OrionSubscription(cond, attr, "P1D", entityId, false, "Room",null);
 					  System.out.println("trying to set subscrition");
 					  hasSubscription = wsc.registerSubscription(subscription);
 					  if(hasSubscription){
