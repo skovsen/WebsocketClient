@@ -16,7 +16,7 @@ public class VanillaTestClient implements WebsocketCallback{
 	
 	public VanillaTestClient(){
 		now = System.currentTimeMillis();
-		wsc= new WebsocketClientStomp(this, "ws://localhost:8080/orion");
+		wsc= new WebsocketClientStomp(this, "ws://localhost:8081/orion");
 		startLoop();
 	}
 	
@@ -30,19 +30,21 @@ public class VanillaTestClient implements WebsocketCallback{
 					  String[] cond = new String[1];
 					  cond[0] = "pressure";
 					  //reference: https://fiware-orion.readthedocs.io/en/develop/user/walkthrough_apiv2/index.html#subscriptions
-					  OrionSubscription subscription = new OrionSubscription(cond, attr, "P1D", "Room1", false, "Room",null);
+					  OrionSubscription subscription = new OrionSubscription(cond, attr, "P1D", "Room666", false, "Room",null);
 					  System.out.println("trying to set subscrition");
 					  hasSubscription = wsc.registerSubscription(subscription);
 					  if(hasSubscription){
-						  System.out.println("subscription set");
+						  System.out.println("subscription request sent");
 					  }  
 				  }else{
 					  List<String> subscriptions = wsc.getSubscriptions();
 					  if(subscriptions.size()>0){
+						  /*
 						  if(wsc.unregisterSubscription(subscriptions.get(0))){
 							  hasSubscription=false;
 							  
 						  }
+						  */
 					  }
 				  }
 				
@@ -54,7 +56,7 @@ public class VanillaTestClient implements WebsocketCallback{
 
 	@Override
 	public void messageReceived(String mesg) {
-		System.out.println("Received message in Processing "+mesg);
+		System.out.println("Received message in Vanilla: "+mesg);
 	}
 	
 	
