@@ -1,7 +1,9 @@
 # Websockets for Orion Context Broker
 
+# This repo has been discontinued. Further development can be found her: https://github.com/OrganicityEu/WebsocketClient
+
 **Create websocket clients for connecting with the Orion Context Broker (https://fiware-orion.readthedocs.io/en/master/), which makes it possible to subscribe to updates from entities in the swarm.
-As the Context Broker is REST based, we provide a Spring.io based middleware (https://github.com/OrganicityEu-Platform/WebsocketMiddleware) for transforming the connections between REST and Websockets. *
+As the Context Broker is REST based, we provide a Spring.io based middleware (https://github.com/OrganicityEu-Platform/WebsocketMiddleware) for transforming the connections between REST and Websockets.
 **
 
 ## Dependencies
